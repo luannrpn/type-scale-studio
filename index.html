@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Scale Studio: escala tipográfica fluida com clamp()</title>
+    <meta name="description" content="Gere uma escala tipográfica fluida em CSS com clamp(), visualize em qualquer largura de tela e exporte variáveis CSS ou JSON." />
+    <meta name="theme-color" content="#0e0d0b" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230e0d0b'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ffd166'/%3E%3C/svg%3E" />
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <div class="cursor" aria-hidden="true"></div>
+
+    <header class="top">
+      <a class="brand" href="#top" aria-label="Início"><i></i>Type/scale</a>
+      <nav aria-label="Principal">
+        <a href="#studio">Estúdio</a>
+        <a href="#export">Exportar</a>
+        <a href="https://github.com/luannrpn/type-scale-studio" rel="noopener">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow" data-reveal>Open source · tipografia fluida para CSS</p>
+        <h1 class="display" data-lines>Uma escala, todas as telas.</h1>
+        <div class="hero-foot" data-reveal>
+          <p class="lead">Defina tamanho e proporção para o menor e o maior viewport e receba as variáveis com clamp() prontas para colar.</p>
+          <a class="btn magnetic" href="#studio">Abrir estúdio <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <section id="studio" aria-labelledby="studio-title">
+        <h2 class="section-title" id="studio-title" data-lines>Monte sua escala</h2>
+        <div class="grid-2">
+          <form class="panel stack sticky" autocomplete="off" onsubmit="return false">
+            <div class="pair">
+              <div class="field">
+                <label for="minVw">Viewport mínimo</label>
+                <div class="input-wrap"><input id="minVw" type="number" min="200" max="1000" step="10" value="320" /><span>px</span></div>
+              </div>
+              <div class="field">
+                <label for="maxVw">Viewport máximo</label>
+                <div class="input-wrap"><input id="maxVw" type="number" min="800" max="3000" step="10" value="1440" /><span>px</span></div>
+              </div>
+            </div>
+            <div class="pair">
+              <div class="field">
+                <label for="minBase">Base no mínimo</label>
+                <div class="input-wrap"><input id="minBase" type="number" min="10" max="28" step="0.5" value="16" /><span>px</span></div>
+              </div>
+              <div class="field">
+                <label for="maxBase">Base no máximo</label>
+                <div class="input-wrap"><input id="maxBase" type="number" min="10" max="32" step="0.5" value="18" /><span>px</span></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="minRatio">Proporção no mínimo</label>
+              <select id="minRatio"></select>
+            </div>
+            <div class="field">
+              <label for="maxRatio">Proporção no máximo</label>
+              <select id="maxRatio"></select>
+            </div>
+            <div class="pair">
+              <div class="field">
+                <label for="down">Passos abaixo</label>
+                <div class="input-wrap"><input id="down" type="number" min="0" max="3" step="1" value="2" /></div>
+              </div>
+              <div class="field">
+                <label for="up">Passos acima</label>
+                <div class="input-wrap"><input id="up" type="number" min="1" max="8" step="1" value="6" /></div>
+              </div>
+            </div>
+          </form>
+
+          <div class="panel" aria-live="polite">
+            <div class="field">
+              <div class="range-head"><label for="vw">Largura simulada</label><output id="vw-out" for="vw">1024px</output></div>
+              <input id="vw" type="range" min="320" max="1920" step="1" value="1024" />
+            </div>
+            <div class="field sample">
+              <label for="sample">Texto de exemplo</label>
+              <div class="input-wrap"><input id="sample" type="text" value="Hotel à beira-mar" maxlength="40" /></div>
+            </div>
+            <ol class="scale" id="scale"></ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="export" aria-labelledby="export-title">
+        <h2 class="section-title" id="export-title" data-lines>Cole no seu projeto</h2>
+        <div class="tabs" role="tablist" aria-label="Formato">
+          <button role="tab" class="tab" id="tab-css" aria-selected="true" aria-controls="code">CSS</button>
+          <button role="tab" class="tab" id="tab-json" aria-selected="false" aria-controls="code">JSON</button>
+          <button class="btn ghost magnetic copy" id="copy" type="button">Copiar</button>
+        </div>
+        <pre class="code" id="code" role="tabpanel" tabindex="0"></pre>
+        <p class="hint" id="copy-status" role="status"></p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>Feito por <strong>Luann Neves</strong> · MIT · <a href="https://github.com/luannrpn/type-scale-studio" rel="noopener">código-fonte</a></p>
+      <p class="hint">Os tamanhos usam rem com base de 16px.</p>
+    </footer>
+  </body>
+</html>
